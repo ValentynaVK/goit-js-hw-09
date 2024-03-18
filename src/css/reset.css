@@ -19,9 +19,16 @@ ul {
   list-style: none;
 }
 
+li{
+  list-style: none;
+}
+
 a {
   color: currentColor;
   text-decoration: none;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 button {
@@ -33,3 +40,8 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+body{
+  font-family: "Montserrat", sans-serif;
+}
+
