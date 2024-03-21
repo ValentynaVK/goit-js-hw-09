@@ -1,23 +1,43 @@
-const KEY_MESSAGE = "feedback-form-state";
-const formRef = document.querySelector('form');
+let form, emailInput, messageInput;
 
-formRef.addEventListener('input', addLocalStorage);
-function addLocalStorage() {
-    const objMessage = JSON.stringify({ email: formRef.elements.email.value, message: formRef.elements.message.value });
-    localStorage.setItem(KEY_MESSAGE, objMessage);    
-}
+window.addEventListener('DOMContentLoaded', () => {
+  form = document.querySelector('form');
+  emailInput = document.querySelector('input[name="email"]');
+  messageInput = document.querySelector('textarea[name="message"]');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const objMessage = JSON.parse(localStorage.getItem(KEY_MESSAGE)) || {};
-    formRef.elements.email.value = objMessage.email || '';
-    formRef.elements.message.value = objMessage.message || '';
+  const storedData = localStorage.getItem('feedback-form-state');
+  if (storedData) {
+    const { email, message } = JSON.parse(storedData);
+    emailInput.value = email;
+    messageInput.value = message;
+  }
+
+  form.addEventListener('input', event => {
+    const { target } = event;
+    if (target.matches('input[name="email"], textarea[name="message"]')) {
+      const formData = {
+        email: emailInput.value.trim(),
+        message: messageInput.value.trim(),
+      };
+      localStorage.setItem('feedback-form-state', JSON.stringify(formData));
+    }
+  });
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+
+    if (emailInput.value.trim() === '' || messageInput.value.trim() === '') {
+      alert('Будь ласка, заповніть всі поля форми.');
+      return;
+    }
+
+    console.log('Form submitted:', {
+      email: emailInput.value,
+      message: messageInput.value,
+    });
+
+    localStorage.removeItem('feedback-form-state');
+    emailInput.value = '';
+    messageInput.value = '';
+  });
 });
-
-formRef.addEventListener('submit', removeLocalStorage);
-function removeLocalStorage(event) {
-    event.preventDefault(); 
-    console.log(JSON.parse(localStorage.getItem(KEY_MESSAGE)));
-    localStorage.removeItem(KEY_MESSAGE);
-    formRef.elements.email.value = '';
-    formRef.elements.message.value = '';
-}
