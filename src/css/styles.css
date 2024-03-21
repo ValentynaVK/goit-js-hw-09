@@ -1,17 +1,14 @@
-@import url('./1-gallery.css');
-@import url('./2-form.css');
-@import url('simplelightbox/dist/simple-lightbox.css');
-
+@import url('./reset.css');
+@import url('./vite-promo.css');
+@import url('./header.css');
 
 :root {
   font-family: Montserrat, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
-  color: #2E2F42;
+  color: #2e2f42;
   background-color: #fafafa;
-  ;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -28,7 +25,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
-  color: #2E2F42;
+  color: #2e2f42;
   background-color: transparent;
 }
 
@@ -69,10 +66,10 @@ button {
   height: 40px;
   padding: 8px 16px;
   text-align: center;
-  border: 1px solid #4E75FF;
+  border: 1px solid #4e75ff;
   border-radius: 8px;
   background-color: transparent;
-  color: #2E2F42;
+  color: #2e2f42;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
